@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外卖配送时间优化系统 - 流程图</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            overflow: auto;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+        }
+        .node rect {
+            stroke-width: 2px;
+            rx: 5;
+            ry: 5;
+        }
+        .node text {
+            font-family: 'Microsoft YaHei', sans-serif;
+            font-size: 14px;
+        }
+        .link {
+            stroke-width: 2px;
+        }
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f0f5ff;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>外卖配送时间优化系统 - 流程图</h1>
+    <div class="container">
+        <svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景和渐变效果 -->
+            <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f0f0f0" stroke-width="1"/>
+                </pattern>
+                
+                <linearGradient id="blue-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#E3F2FD" />
+                    <stop offset="100%" stop-color="#BBDEFB" />
+                </linearGradient>
+                
+                <linearGradient id="yellow-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#FFECB3" />
+                    <stop offset="100%" stop-color="#FFE082" />
+                </linearGradient>
+                
+                <linearGradient id="green-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#E8F5E9" />
+                    <stop offset="100%" stop-color="#C8E6C9" />
+                </linearGradient>
+                
+                <linearGradient id="algo-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#FFF3E0" />
+                    <stop offset="100%" stop-color="#FFE0B2" />
+                </linearGradient>
+                
+                <linearGradient id="data-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#E1F5FE" />
+                    <stop offset="100%" stop-color="#B3E5FC" />
+                </linearGradient>
+                
+                <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                    <feOffset dx="2" dy="2" result="offsetblur" />
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.2" />
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                
+                <!-- 箭头标记定义 -->
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                        markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#333"/>
+                </marker>
+                
+                <marker id="orange-arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                        markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF9800"/>
+                </marker>
+                
+                <marker id="blue-arrow" viewBox="0 0 10 10" refX="5" refY="5"
+                        markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#03A9F4"/>
+                </marker>
+            </defs>
+            
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- 标题背景 -->
+            <rect x="250" y="10" width="500" height="30" rx="5" ry="5" fill="#EEEEEE" filter="url(#drop-shadow)" />
+            <text x="500" y="30" text-anchor="middle" font-weight="bold" fill="#333" font-size="16">外卖配送时间优化系统流程</text>
+            
+            <!-- 开始节点 -->
+            <circle cx="500" cy="70" r="30" fill="#4CAF50" stroke="#388E3C" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="75" text-anchor="middle" fill="white" font-weight="bold">开始</text>
+            
+            <!-- 初始化 -->
+            <rect x="400" y="120" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#blue-grad)" stroke="#2196F3" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="155" text-anchor="middle" font-weight="bold">系统初始化</text>
+            
+            <!-- 数据读取 -->
+            <rect x="400" y="210" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#blue-grad)" stroke="#2196F3" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="245" text-anchor="middle" font-weight="bold">读取配送网络数据和点餐信息</text>
+            
+            <!-- 分析订单 -->
+            <rect x="400" y="300" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#blue-grad)" stroke="#2196F3" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="335" text-anchor="middle" font-weight="bold">分析订单分布情况</text>
+            
+            <!-- 设置配送参数 -->
+            <rect x="400" y="390" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#blue-grad)" stroke="#2196F3" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="425" text-anchor="middle" font-weight="bold">设置最大取餐数量</text>
+            
+            <!-- 寻找最优起始店面 -->
+            <rect x="400" y="480" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#yellow-grad)" stroke="#FFC107" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="515" text-anchor="middle" font-weight="bold">寻找最优起始店面</text>
+            
+            <!-- 优化配送路径 -->
+            <rect x="400" y="570" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#yellow-grad)" stroke="#FFC107" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="605" text-anchor="middle" font-weight="bold">优化配送路径</text>
+            
+            <!-- 显示结果 -->
+            <rect x="400" y="660" width="200" height="60" rx="10" ry="10" 
+                  fill="url(#green-grad)" stroke="#4CAF50" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="695" text-anchor="middle" font-weight="bold">显示最优配送路径和过程</text>
+            
+            <!-- 结束节点 -->
+            <circle cx="500" cy="770" r="30" fill="#F44336" stroke="#D32F2F" stroke-width="2" filter="url(#drop-shadow)"/>
+            <text x="500" y="775" text-anchor="middle" fill="white" font-weight="bold">结束</text>
+            
+            <!-- 连接线 -->
+            <path d="M 500 100 L 500 120" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 180 L 500 210" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 270 L 500 300" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 360 L 500 390" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 450 L 500 480" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 540 L 500 570" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 630 L 500 660" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M 500 720 L 500 740" stroke="#333" stroke-width="2" marker-end="url(#arrow)"/>
+            
+            <!-- 优化路径详细流程 -->
+            <rect x="680" y="490" width="270" height="240" rx="10" ry="10" 
+                  fill="url(#algo-grad)" stroke="#FF9800" stroke-width="2" stroke-dasharray="5,5" filter="url(#drop-shadow)"/>
+            <text x="815" y="515" text-anchor="middle" font-weight="bold" fill="#E65100" font-size="16">路径优化算法</text>
+            <text x="700" y="545" text-anchor="start" font-size="13">1. 按最近节点策略选择下一站</text>
+            <text x="700" y="575" text-anchor="start" font-size="13">2. 优先送餐后取餐</text>
+            <text x="700" y="605" text-anchor="start" font-size="13">3. 考虑最大取餐数量限制</text>
+            <text x="700" y="635" text-anchor="start" font-size="13">4. 计算不同起始点的路径长度</text>
+            <text x="700" y="665" text-anchor="start" font-size="13">5. 选择总距离最短的方案</text>
+            <text x="700" y="695" text-anchor="start" font-size="13">6. 处理异常情况和约束条件</text>
+            
+            <!-- 递归计算示意图 -->
+            <rect x="710" y="410" width="120" height="40" rx="5" ry="5" fill="#FFF3E0" stroke="#FF9800" stroke-width="1.5"/>
+            <text x="770" y="435" text-anchor="middle" font-size="12">起始店面1</text>
+            
+            <rect x="760" y="410" width="120" height="40" rx="5" ry="5" fill="#FFF3E0" stroke="#FF9800" stroke-width="1.5"/>
+            <text x="820" y="435" text-anchor="middle" font-size="12">起始店面2</text>
+            
+            <rect x="810" y="410" width="120" height="40" rx="5" ry="5" fill="#FFAB91" stroke="#FF5722" stroke-width="2"/>
+            <text x="870" y="435" text-anchor="middle" font-size="12" font-weight="bold">最优起始店面</text>
+            
+            <path d="M 815 450 L 815 490" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#orange-arrow)"/>
+            
+            <!-- 连接算法详细流程 -->
+            <path d="M 600 600 Q 640 600 680 600" stroke="#FF9800" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#orange-arrow)"/>
+            
+            <!-- 数据结构 -->
+            <rect x="100" y="490" width="240" height="240" rx="10" ry="10" 
+                  fill="url(#data-grad)" stroke="#03A9F4" stroke-width="2" stroke-dasharray="5,5" filter="url(#drop-shadow)"/>
+            <text x="220" y="515" text-anchor="middle" font-weight="bold" fill="#01579B" font-size="16">数据结构</text>
+            
+            <!-- 数据结构内容 -->
+            <rect x="120" y="535" width="200" height="30" rx="3" ry="3" fill="#B3E5FC" stroke="#03A9F4" stroke-width="1"/>
+            <text x="220" y="555" text-anchor="middle" font-size="12">邻接矩阵 graph[MAX_NODES][MAX_NODES]</text>
+            
+            <rect x="120" y="575" width="200" height="30" rx="3" ry="3" fill="#B3E5FC" stroke="#03A9F4" stroke-width="1"/>
+            <text x="220" y="595" text-anchor="middle" font-size="12">客户订单 customer_store[MAX_NODES]</text>
+            
+            <rect x="120" y="615" width="200" height="30" rx="3" ry="3" fill="#B3E5FC" stroke="#03A9F4" stroke-width="1"/>
+            <text x="220" y="635" text-anchor="middle" font-size="12">待配送订单 pending_orders[]</text>
+            
+            <rect x="120" y="655" width="200" height="30" rx="3" ry="3" fill="#B3E5FC" stroke="#03A9F4" stroke-width="1"/>
+            <text x="220" y="675" text-anchor="middle" font-size="12">已取餐订单 curr_orders[]</text>
+            
+            <rect x="120" y="695" width="200" height="30" rx="3" ry="3" fill="#B3E5FC" stroke="#03A9F4" stroke-width="1"/>
+            <text x="220" y="715" text-anchor="middle" font-size="12">最优路径 optimal_path[]</text>
+            
+            <!-- 连接数据结构 -->
+            <path d="M 400 600 Q 360 600 340 600" stroke="#03A9F4" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#blue-arrow)"/>
+            
+            <!-- 图例 -->
+            <rect x="100" y="330" width="240" height="130" rx="8" ry="8" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1" filter="url(#drop-shadow)"/>
+            <text x="220" y="350" text-anchor="middle" font-weight="bold" fill="#333">图例</text>
+            
+            <!-- 图例内容 -->
+            <rect x="120" y="365" width="20" height="20" rx="3" ry="3" fill="url(#blue-grad)" stroke="#2196F3" stroke-width="1.5"/>
+            <text x="150" y="380" text-anchor="start" font-size="12" dominant-baseline="middle">系统初始化和数据读取</text>
+            
+            <rect x="120" y="395" width="20" height="20" rx="3" ry="3" fill="url(#yellow-grad)" stroke="#FFC107" stroke-width="1.5"/>
+            <text x="150" y="410" text-anchor="start" font-size="12" dominant-baseline="middle">路径优化计算</text>
+            
+            <rect x="120" y="425" width="20" height="20" rx="3" ry="3" fill="url(#green-grad)" stroke="#4CAF50" stroke-width="1.5"/>
+            <text x="150" y="440" text-anchor="start" font-size="12" dominant-baseline="middle">结果输出</text>
+        </svg>
+    </div>
+    
+    <div class="description">
+        <h3>系统流程说明</h3>
+        <p>本系统实现了外卖配送路径优化，通过以下步骤运行：</p>
+        <ol>
+            <li><strong>系统初始化</strong>：初始化图结构和相关数据结构，包括配送网络邻接矩阵和订单状态数组</li>
+            <li><strong>数据读取</strong>：从文件中读取配送网络数据和客户点餐信息，构建配送网络模型</li>
+            <li><strong>分析订单</strong>：按店面分组统计各店面订单分布情况，为路径规划提供依据</li>
+            <li><strong>设置参数</strong>：确定骑手一次最多能取的餐数量，作为配送策略的约束条件</li>
+            <li><strong>寻找最优起点</strong>：通过尝试不同店面作为起点，找到总配送距离最短的起始店面</li>
+            <li><strong>优化配送路径</strong>：根据"最近节点优先"原则确定配送路径，同时考虑:
+                <ul>
+                    <li>优先送餐后取餐的策略，保证热餐及时送达</li>
+                    <li>最大取餐数量限制，符合实际业务约束</li>
+                    <li>全局最优解算法，减少总配送距离</li>
+                </ul>
+            </li>
+            <li><strong>显示结果</strong>：输出最优配送路径、总距离及详细的取送餐过程，并保存为CSV格式</li>
+        </ol>
+        <p>系统使用邻接矩阵存储配送网络，采用贪心策略求解配送路径，考虑了骑手一次最多取餐数量的限制，并优先选择送餐后取餐的策略以保证热餐及时送达。通过对多种起始点的尝试，能够找到全局更优的配送方案。</p>
+    </div>
+    
+    <div class="legend">
+        <h3>算法亮点</h3>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FFC107;"></div>
+            <div>自动寻找最优起始店面，避免人工选择造成的不优解</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #4CAF50;"></div>
+            <div>优先送餐后取餐策略，确保热餐及时送达</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #2196F3;"></div>
+            <div>考虑最大取餐数量限制，符合实际配送场景</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #F44336;"></div>
+            <div>贪心策略选择下一站，保证局部最优解</div>
+        </div>
+    </div>
+</body>
+</html> 
